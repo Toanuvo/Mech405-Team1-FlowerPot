@@ -1,6 +1,6 @@
 from Flowerpot_Engine import *
 def main():
-    r
+    
     print("Hello from mech405-team1-flowerpot!")
 
 
