@@ -42,8 +42,8 @@ def get_noaa_data():
         sunpct = 0
         
     return {
-        "temp": temp,
-        "prec": prec,
-        "sunpct": sunpct,
+        "temp": temp, # Farenheit
+        "prec": prec, # % 0-100
+        "sunpct": sunpct, # % 0-100
     }
     
