@@ -41,9 +41,7 @@ def get_noaa_data():
     elif rain and cloud:
         sunpct = 0
         
-    return {
-        "temp": temp, # Farenheit
-        "prec": prec, # % 0-100
-        "sunpct": sunpct, # % 0-100
-    }
+    # Farenheit,  % 0-100,  % 0-100
+    return  temp, prec, sunpct, 
+    
     

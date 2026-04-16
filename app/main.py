@@ -64,9 +64,9 @@ def main():
         temp, hum = read_TempHum()
 
         # Get NOAA data
-        noaa = get_noaa_data()
+        dayTemp, prec, sunpct = get_noaa_data()
         
-        pump_duration, rotation = adjust_pot(hum,light,noaa["sunpct"], soil, noaa["prec"], temp, waterLevel, rotation)
+        pump_duration, rotation = adjust_pot(hum,light,sunpct, soil, prec, temp, waterLevel, rotation)
 
         # Data 
         data_out = {
@@ -76,15 +76,20 @@ def main():
             "WaterLevel": waterLevel,
             "Temperature": temp,
             "Humidity": hum,
-            "NoaaTemp": noaa["temp"],
-            "Precipitation": noaa["prec"],
-            "SunPct": noaa["sunpct"]
+            "NoaaTemp": dayTemp,
+            "Precipitation": prec,
+            "SunPct": sunpct
         }
 
         print("data_out=", data_out)
 
         # Send data to ThingsBoard
         send_data(data_out)
+        
+        with open("log.csv", "+a") as csv:
+            if csv.tell() == 0:
+                csv.write("date,temp,humidity,rotation,soilMoisture,light,waterLevel,dayTemp,precipitation,sunpct,pumpDuration\n")
+            csv.write(f"{datetime.datetime.now()},{temp},{hum},{rotation},{soil},{dayTemp},{prec},{sunpct},{pump_duration}\n")
 
         print('---------------------------')
 
