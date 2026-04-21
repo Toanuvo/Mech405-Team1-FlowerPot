@@ -35,9 +35,9 @@ def adjust_pot(humidity, lightpct, sunpct, soil_moisture, precipitation, tempera
     if is_day and (sunpct >= 50 or (lightpct >= 20)):
         if is_morning:
             # move plant to one side
-            if not read_RightLim():
+            while not read_RightLim():
                 motor.rotate(1, 'CCW', 's', 'full')
-                rotation = -90
+            rotation = -90
          
         if not read_LeftLim():
             motor.rotate(15, 'CW', 's', 'full')

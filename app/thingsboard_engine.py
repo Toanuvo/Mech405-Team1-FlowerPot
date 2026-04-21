@@ -57,6 +57,8 @@ def setValue(params):
 def send_data(data_out):
     JSON_data_out = json.dumps(data_out) # Convert to JSON format
     client.publish(TelemetryTopic, JSON_data_out, 0)
+    waterlvl = {"HasWater": data_out["WaterLevel"] == 1}
+    client.publish(AttributesTopic, json.dumps(waterlvl), 1)
 
 # This function is used to disconnect from ThingsBoard
 def disconnect_tb():
