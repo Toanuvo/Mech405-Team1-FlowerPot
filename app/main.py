@@ -4,6 +4,7 @@ from noaa_engine import get_noaa_data
 from thingsboard_engine import *
 import time
 
+
 def adjust_pot(humidity, lightpct, sunpct, soil_moisture, precipitation, temperature, has_water, rotation):
     pump_duration = 1
     if humidity < 60:
@@ -89,7 +90,7 @@ def main():
         with open("log.csv", "+a") as csv:
             if csv.tell() == 0: # add csv header if file is empty
                 csv.write("date,temp,humidity,rotation,soilMoisture,light,waterLevel,dayTemp,precipitation,sunpct,pumpDuration\n")
-            csv.write(f"{datetime.datetime.now()},{temp},{hum},{rotation},{soil},{dayTemp},{prec},{sunpct},{pump_duration}\n")
+            csv.write(f"{datetime.datetime.now()},{temp},{hum},{rotation},{soil},{light},{waterLevel},{dayTemp},{prec},{sunpct},{pump_duration}\n")
 
         print('---------------------------')
 
