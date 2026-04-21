@@ -9,7 +9,7 @@ from Flowerpot_Engine import *
 iot_hub = "thingsboard.cloud"
 port = 1883
 cli_ID = f'clientID-{random.randint(0, 1000)}'
-username = " "               # <==== Enter your device token from TB here
+username = "3FlmxHAZbzbrchZy6hwO"               # <==== Enter your device token from TB here
 password = ""
 TelemetryTopic = "v1/devices/me/telemetry"
 RPCrequestTopic = 'v1/devices/me/rpc/request/+'

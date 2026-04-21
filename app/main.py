@@ -87,7 +87,7 @@ def main():
         send_data(data_out)
         
         with open("log.csv", "+a") as csv:
-            if csv.tell() == 0:
+            if csv.tell() == 0: # add csv header if file is empty
                 csv.write("date,temp,humidity,rotation,soilMoisture,light,waterLevel,dayTemp,precipitation,sunpct,pumpDuration\n")
             csv.write(f"{datetime.datetime.now()},{temp},{hum},{rotation},{soil},{dayTemp},{prec},{sunpct},{pump_duration}\n")
 
