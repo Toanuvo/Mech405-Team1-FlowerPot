@@ -18,8 +18,8 @@ def adjust_pot(humidity, lightpct, sunpct, soil_moisture, precipitation, tempera
         
     now = datetime.datetime.now().time() # get current hour
     
-    is_morning = datetime.time(7) <= now <= datetime.time(8)
-    is_evening = datetime.time(18) <= now <= datetime.time(19)
+    is_morning = datetime.time(7) < now <= datetime.time(8)
+    is_evening = datetime.time(18) < now <= datetime.time(19)
     
     need_water = soil_moisture < 40 or not has_water
     
@@ -30,7 +30,7 @@ def adjust_pot(humidity, lightpct, sunpct, soil_moisture, precipitation, tempera
         pump_OFF()
         
         
-    is_day = datetime.time(7) <= now <= datetime.time(19)
+    is_day = datetime.time(7) < now <= datetime.time(19)
     
     # sunny day so rotate plant during day
     if is_day and (sunpct >= 50 or (lightpct >= 20)):
@@ -40,9 +40,12 @@ def adjust_pot(humidity, lightpct, sunpct, soil_moisture, precipitation, tempera
                 motor.rotate(1, 'CCW', 's', 'full')
             rotation = -90
          
-        if not read_LeftLim():
-            motor.rotate(15, 'CW', 's', 'full')
-            rotation += 15
+        for i in range(15):
+            if read_LeftLim():
+                break
+            motor.rotate(1, 'CW', 's', 'full')
+            rotation += 1
+            
         
         
     
