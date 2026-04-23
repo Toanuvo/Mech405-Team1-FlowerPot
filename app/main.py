@@ -98,7 +98,7 @@ def main():
         print('---------------------------')
 
         i = i + 1
-        time.sleep(5)
+        time.sleep(3600)
 
 
 if __name__ == "__main__":
