@@ -6,15 +6,15 @@ import time
 
 
 def adjust_pot(humidity, lightpct, sunpct, soil_moisture, precipitation, temperature, has_water, rotation):
-    pump_duration = 1
+    pump_duration = 0.5
     if humidity < 60:
-        pump_duration += 1
+        pump_duration += 0.2
     if sunpct >= 50:
-        pump_duration += 1
+        pump_duration += 0.2
     if precipitation >= 40:
-        pump_duration += 1
+        pump_duration -= 0.2
     if temperature >= 75:
-        pump_duration += 1
+        pump_duration += 0.2
         
     now = datetime.datetime.now().time() # get current hour
     
